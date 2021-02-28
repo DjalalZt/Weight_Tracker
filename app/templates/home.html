@@ -1,3 +1,13 @@
 {% extends "base.html" %}
     
 {% block title %}Home{% endblock %}
+
+{% block content %}
+    <br>
+    <h1 align="center"><b style="color: rgb(104, 230, 1);">WEIGHT</b> TRACKER</h1>
+    <p align="center">Welcome to Weight Tracker Please select an option:</p>
+    <div align="center">
+        <a role="button" class="btn btn-primary" href="/add">Add a Weight</a>
+        <a role="button" class="btn btn-primary" href="/show">Show Weights</a>
+    </div>
+{% endblock %}
