@@ -1,3 +1,29 @@
 {% extends "base.html" %}
     
 {% block title %}Show Weights{% endblock %}
+
+{% block content %}
+    <br>
+    <h1 align="center"><b style="color: rgb(104, 230, 1);">SHOW</b> WEIGHT</h1>
+    <br>
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Weight</th>
+                <th scope="col">Date and Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for value in weight %}
+                <tr>
+                    <td>{{ value.weight }}</td>
+                    <td>{{ value.date }}</td>
+                </tr>
+            {% endfor %}  
+    </table>
+    <br>
+    <div align="center">
+        <a href="/add" class="btn btn-primary">Add Weights</a>
+        <a href="/delete" class="btn btn-outline-danger">Clear Weights</a>
+    </div>
+{% endblock %}

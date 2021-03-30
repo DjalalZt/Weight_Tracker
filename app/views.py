@@ -35,17 +35,17 @@ def add():
 @views.route('/show')
 @login_required
 def show():
-    return render_template("show.html", user=current_user)
+    weight = Weights.query.all()
+    if weight:
+        return render_template("show.html", user=current_user, weight=weight)
+    else:
+        return render_template("show_empty.html", user=current_user)
 
+@views.route('/delete')
+def delete():
+    weight_delete = Weights.query.all()
+    for weight in weight_delete:
+        db.session.delete(weight)
+        db.session.commit()
 
-##@views.route('/delete-note', methods=['POST'])
-##def delete_note():
-##    note = json.loads(request.data)
-##    noteId = note['noteId']
-##    note = Note.query.get(noteId)
-##    if note:
-##        if note.user_id == current_user.id:
-##            db.session.delete(note)
-##            db.session.commit()
-            
-##    return jsonify({})
+    return redirect(url_for('views.home'))
