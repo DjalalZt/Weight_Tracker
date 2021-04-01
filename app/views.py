@@ -20,16 +20,20 @@ def add():
         return render_template("add.html", user=current_user)
     else:
         weight = request.form.get('add')
-        num_weight = int(weight)
-        if num_weight > 0:
-            flash('Weight added successfully!', category='success')
-            new_weight = Weights(weight=num_weight, user_id=current_user.id)
-            db.session.add(new_weight)
-            db.session.commit()
-            return redirect(url_for('views.add'))
+        if weight:
+            num_weight = int(weight)
+            if num_weight > 0:
+                flash('Weight added successfully!', category='success')
+                new_weight = Weights(weight=num_weight, user_id=current_user.id)
+                db.session.add(new_weight)
+                db.session.commit()
+                return redirect(url_for('views.add'))
+            else:
+                flash('Please enter an non null positive number', category='error')
+                return redirect(url_for('views.add'))
         else:
-            flash('Please enter an non null positive number', category='error')
-            return redirect(url_for('views.add'))    
+            flash('You must enter a value', category='error')
+            return redirect(url_for('views.add'))  
 
 
 @views.route('/show')
